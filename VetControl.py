@@ -11,6 +11,8 @@ lista_vacunas = []
 lista_enfermedades = []
 lista_historial_citas = []
 
+from datetime import datetime
+
 
 def mostrar_lista():
     print("\nLista actual:")
@@ -35,15 +37,21 @@ def agregar_animal():
     raza = input("Ingresá la raza del paciente: ")
     lista_razas.append(raza)
 
-    edad = input("Ingresá la edad del paciente: ")
+    edad = int(input("Ingresá la edad del paciente: "))
     lista_edades.append(edad)
-
+    if edad>100:
+        print("Ingrese una edad correcta")
+        edad=int(input("Ingresá la edad del paciente: "))
+        lista_edades.append(edad)
     sexo = input("Ingresá el sexo del paciente (M/H): ")
     lista_sexos.append(sexo)
-
+    if sexo != "M" and sexo != "H":
+        print("Ingrese un sexo correcto")
+        sexo = input("Ingresá el sexo del paciente (M/H): ")
+        lista_sexos.append(sexo)
     proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
     lista_proximas_citas.append(proxima_cita)
-
+    
     ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
     lista_ultimas_citas.append(ultima_cita)
 
