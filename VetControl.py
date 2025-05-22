@@ -45,13 +45,13 @@ def agregar_animal():
 
     edad = int(input("Ingresá la edad del paciente: "))
     lista_edades.append(edad)
-    if edad>100:
+    if edad < 0 or edad>100:
         print("Ingrese una edad correcta")
         edad=int(input("Ingresá la edad del paciente: "))
         lista_edades.append(edad)
 
     sexo = input("Ingresá el sexo del paciente (M/H): ")
-    lista_sexos.append(sexo)
+    lista_sexos.append(sexo.lower())
     if sexo != "m" and sexo != "h":
         print("Ingrese un sexo correcto")
         sexo = input("Ingresá el sexo del paciente (M/H): ")
