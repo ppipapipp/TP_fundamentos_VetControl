@@ -1,3 +1,4 @@
+"""busqueda binaria para buscar un animal en la lista"""
 # Listas globales
 lista_nombres = []
 lista_codigos = []
@@ -12,7 +13,7 @@ lista_enfermedades = []
 lista_historial_citas = []
 
 from datetime import datetime
-
+import random 
 
 def mostrar_lista():
     print("\nLista actual:")
@@ -25,8 +26,13 @@ def mostrar_lista():
 
 
 def agregar_animal():
-    codigo = input("Ingresá el código del nuevo paciente: ")
-    lista_codigos.append(codigo)
+    while True:
+        codigo = str(random.randint(1000, 9999))
+        if codigo not in lista_codigos:
+            lista_codigos.append(codigo)
+            break
+    
+    print("El codigo del paciente es:", codigo)
 
     nombre = input("Ingresá el nombre del nuevo paciente: ")
     lista_nombres.append(nombre)
@@ -43,17 +49,42 @@ def agregar_animal():
         print("Ingrese una edad correcta")
         edad=int(input("Ingresá la edad del paciente: "))
         lista_edades.append(edad)
+
     sexo = input("Ingresá el sexo del paciente (M/H): ")
     lista_sexos.append(sexo)
-    if sexo != "M" and sexo != "H":
+    if sexo != "m" and sexo != "h":
         print("Ingrese un sexo correcto")
         sexo = input("Ingresá el sexo del paciente (M/H): ")
         lista_sexos.append(sexo)
-    proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
-    lista_proximas_citas.append(proxima_cita)
-    
+
     ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
+    while True:
+        try:
+            fecha_ultima= datetime.strptime(ultima_cita, "%d/%m/%Y")
+            hoy=datetime.now()
+            if fecha_ultima > hoy:
+                print("La fecha de la ultima cita no puede estar en el futuro, intente de nuevo.")
+                ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
+            else:
+                break
+        except ValueError:
+            print("Formato de fecha incorrecto. Ingresá la fecha en formato dd/mm/aaaa.")
+            ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
     lista_ultimas_citas.append(ultima_cita)
+
+    proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
+    while True:
+        try:
+            fecha_proxima= datetime.strptime(proxima_cita, "%d/%m/%Y")
+            if fecha_proxima < fecha_ultima:
+                print("La fecha de la próxima cita no puede ser anterior a la última cita.")
+                proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
+            else:
+                break
+        except ValueError:
+            print("Formato de fecha incorrecto. Ingresá la fecha en formato dd/mm/aaaa.")
+            proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
+    lista_proximas_citas.append(proxima_cita)
 
     vacunas = input("Ingresá las vacunas aplicadas (separadas por comas): ")
     lista_vacunas.append(vacunas)
