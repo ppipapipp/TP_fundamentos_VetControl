@@ -37,10 +37,10 @@ def agregar_animal():
     nombre = input("Ingresá el nombre del nuevo paciente: ")
     lista_nombres.append(nombre)
 
-    especie = input("Ingresá la especie del paciente (ej: perro, gato): ")
+    especie = str(input("Ingresá la especie del paciente (ej: perro, gato): "))
     lista_especies.append(especie)
 
-    raza = input("Ingresá la raza del paciente: ")
+    raza = str(input("Ingresá la raza del paciente: "))
     lista_razas.append(raza)
 
     edad = int(input("Ingresá la edad del paciente: "))
@@ -76,6 +76,10 @@ def agregar_animal():
     while True:
         try:
             fecha_proxima= datetime.strptime(proxima_cita, "%d/%m/%Y")
+            hoy=datetime.now()
+            if fecha_proxima < hoy:
+                print("La fecha de la proxima cita no puede estar en el pasado, intente de nuevo.")
+                proxima_cita = input("Ingresá la fecha de la proxima cita (dd/mm/aaaa): ")
             if fecha_proxima < fecha_ultima:
                 print("La fecha de la próxima cita no puede ser anterior a la última cita.")
                 proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
