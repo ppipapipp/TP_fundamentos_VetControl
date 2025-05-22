@@ -18,7 +18,7 @@ def mostrar_lista():
         print("La lista está vacía.")
     else:
         for i in range(len(lista_codigos)):
-            print(f"{i+1}. Código: {lista_codigos[i]} | Nombre: {lista_nombres[i]}")
+            print(i+1, " Código: ", lista_codigos[i] , " | Nombre: " , lista_nombres[i])
     print()
 
 
@@ -48,12 +48,12 @@ def agregar_animal():
     lista_ultimas_citas.append(ultima_cita)
 
     vacunas = input("Ingresá las vacunas aplicadas (separadas por comas): ")
-    lista_vacunas.append(vacunas.split(','))
+    lista_vacunas.append(vacunas)
 
     enfermedades = input("Ingresá las enfermedades conocidas (separadas por comas): ")
-    lista_enfermedades.append(enfermedades.split(','))
+    lista_enfermedades.append(enfermedades)
 
-    print(f"{nombre} fue agregado/a exitosamente a la base de datos.\n")
+    print(nombre, " fue agregado/a exitosamente a la base de datos.\n")
 
 
 def buscar_animal():
@@ -62,7 +62,7 @@ def buscar_animal():
     encontrado = False
     for i in range(len(lista_codigos)):
         if criterio == lista_codigos[i].lower() or criterio == lista_nombres[i].lower():
-            print(f"\nPaciente encontrado ({i+1}):")
+            print("\nPaciente encontrado ",  (i+1), ":")
             print("Código:", lista_codigos[i])
             print("Nombre:", lista_nombres[i])
             print("Especie:", lista_especies[i])
@@ -71,8 +71,8 @@ def buscar_animal():
             print("Sexo:", lista_sexos[i])
             print("Próxima cita:", lista_proximas_citas[i])
             print("Última cita:", lista_ultimas_citas[i])
-            print("Vacunas:", ', '.join(lista_vacunas[i]))
-            print("Enfermedades:", ', '.join(lista_enfermedades[i]))
+            print("Vacunas:", lista_vacunas[i])
+            print("Enfermedades:", lista_enfermedades[i])
             encontrado = True
             break
 
