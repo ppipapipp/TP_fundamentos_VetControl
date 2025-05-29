@@ -24,13 +24,24 @@ def mostrar_lista():
             print(i+1, " Código: ", lista_codigos[i] , " | Nombre: " , lista_nombres[i])
     print()
 
+def buscar_duplicados(ingreso, lista_codigos):
+    ingreso = ingreso.strip().lower()
+    coincidencias = []
+    for lista in lista_codigos:
+        for item in lista:
+            if item.lower() == ingreso:
+                coincidencias.append(item)
+    return coincidencias
 
 def agregar_animal():
     while True:
         codigo = str(random.randint(1000, 9999))
+        resultado = buscar_duplicados(codigo, lista_codigos)
         if codigo not in lista_codigos:
             lista_codigos.append(codigo)
             break
+        elif resultado:
+             codigo = str(random.randint(1000, 9999))
     
     print("El codigo del paciente es:", codigo)
 
