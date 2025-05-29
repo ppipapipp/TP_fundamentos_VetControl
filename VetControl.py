@@ -56,17 +56,17 @@ def agregar_animal():
 
     edad = int(input("Ingresá la edad del paciente: "))
     lista_edades.append(edad)
-    if edad < 0 or edad>100:
+    while edad < 0 or edad>100:
         print("Ingrese una edad correcta")
         edad=int(input("Ingresá la edad del paciente: "))
-        lista_edades.append(edad)
+    lista_edades.append(edad)
 
     sexo = input("Ingresá el sexo del paciente (M/H): ")
     lista_sexos.append(sexo.lower())
-    if sexo != "m" and sexo != "h":
+    while sexo != "m" and sexo != "h":
         print("Ingrese un sexo correcto")
         sexo = input("Ingresá el sexo del paciente (M/H): ")
-        lista_sexos.append(sexo)
+    lista_sexos.append(sexo)
 
     ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
     while True:
@@ -83,23 +83,25 @@ def agregar_animal():
             ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
     lista_ultimas_citas.append(ultima_cita)
 
-    proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
+
     while True:
+        proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
         try:
-            fecha_proxima= datetime.strptime(proxima_cita, "%d/%m/%Y")
-            hoy=datetime.now()
+            fecha_proxima = datetime.strptime(proxima_cita, "%d/%m/%Y")
+            hoy = datetime.now()
+
             if fecha_proxima < hoy:
-                print("La fecha de la proxima cita no puede estar en el pasado, intente de nuevo.")
-                proxima_cita = input("Ingresá la fecha de la proxima cita (dd/mm/aaaa): ")
+                print("La fecha de la próxima cita no puede estar en el pasado. Intente de nuevo.")
+                continue
             if fecha_proxima < fecha_ultima:
                 print("La fecha de la próxima cita no puede ser anterior a la última cita.")
-                proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
-            else:
-                break
+                continue
+
+            lista_proximas_citas.append(proxima_cita)
+            break
+
         except ValueError:
             print("Formato de fecha incorrecto. Ingresá la fecha en formato dd/mm/aaaa.")
-            proxima_cita = input("Ingresá la fecha de la próxima cita (dd/mm/aaaa): ")
-    lista_proximas_citas.append(proxima_cita)
 
     vacunas = input("Ingresá las vacunas aplicadas (separadas por comas): ")
     lista_vacunas.append(vacunas)
@@ -111,11 +113,11 @@ def agregar_animal():
 
 
 def buscar_animal():
-    criterio = input("Buscar por código o nombre: ").lower()
+    codigo = input("Buscar por código: ").lower()
 
     encontrado = False
     for i in range(len(lista_codigos)):
-        if criterio == lista_codigos[i].lower() or criterio == lista_nombres[i].lower():
+        if codigo == lista_codigos[i].lower():
             print("\nPaciente encontrado ",  (i+1), ":")
             print("Código:", lista_codigos[i])
             print("Nombre:", lista_nombres[i])
