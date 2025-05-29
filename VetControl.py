@@ -103,10 +103,10 @@ def agregar_animal():
         except ValueError:
             print("Formato de fecha incorrecto. Ingresá la fecha en formato dd/mm/aaaa.")
 
-    vacunas = input("Ingresá las vacunas aplicadas (separadas por comas): ")
+    vacunas = input("Ingresá las vacunas aplicadas: ")
     lista_vacunas.append(vacunas)
 
-    enfermedades = input("Ingresá las enfermedades conocidas (separadas por comas): ")
+    enfermedades = input("Ingresá las enfermedades conocidas: ")
     lista_enfermedades.append(enfermedades)
 
     print(nombre, " fue agregado/a exitosamente a la base de datos.\n")
