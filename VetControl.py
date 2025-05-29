@@ -24,10 +24,10 @@ def mostrar_lista():
             print(i+1, " Código: ", lista_codigos[i] , " | Nombre: " , lista_nombres[i])
     print()
 
-def buscar_duplicados(ingreso, lista_codigos):
+def buscar_duplicados(ingreso, listas):
     ingreso = ingreso.strip().lower()
     coincidencias = []
-    for lista in lista_codigos:
+    for lista in listas:
         for item in lista:
             if item.lower() == ingreso:
                 coincidencias.append(item)
