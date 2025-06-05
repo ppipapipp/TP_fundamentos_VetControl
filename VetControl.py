@@ -217,6 +217,34 @@ def buscar_animal():
     if not encontrado:
         print("No se encontró ningún paciente con ese nombre o código.")
 
+suma_edades=0
+cantidad_animales=0
+def promedio_edad(lista_edades):
+    suma_edades = sum(lista_edades)
+
+    print(suma_edades)
+    cantidad_animales = len(lista_edades)
+    print(cantidad_animales)
+    promedio_edad= suma_edades / cantidad_animales
+    print (promedio_edad)
+
+hembras=0
+machos=0
+total=0
+porcentaje_h=0
+porcentaje_m=0
+def porcentaje_sexo(lista_sexos):
+    for i in range(len(lista_sexos)):
+        if lista_sexos == ("h") :
+            hembras +=1
+        else:
+            machos +=1
+    total= machos+hembras
+    porcentaje_h= (hembras*100)/total
+    print("el porcentaje de hembras es", porcentaje_h, "%")
+    porcentaje_m= (machos*100)/total
+    print("el porcentaje de machos es", porcentaje_m, "%")
+
 
 def menu():
     opcion = 0
@@ -225,6 +253,8 @@ def menu():
         print("1. Mostrar lista")
         print("2. Agregar paciente")
         print("3. Buscar paciente")
+        print("4. Promedio de edad")
+        print("5. Porcentaje sexos")
         print("-1. Salir")
 
         try:
@@ -239,6 +269,10 @@ def menu():
             agregar_animal()
         elif opcion == 3:
             buscar_animal()
+        elif opcion == 4:
+            promedio_edad(lista_edades)
+        elif opcion == 5:
+            porcentaje_sexo(lista_sexos)
         elif opcion == -1:
             print("¡Chau!")
         else:
