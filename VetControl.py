@@ -111,6 +111,88 @@ def agregar_animal():
 
     print(nombre, " fue agregado/a exitosamente a la base de datos.\n")
 
+def modificar_animal():
+    codigo = input("Ingresá el código del paciente a modificar: ").strip()
+    if codigo not in lista_codigos:
+        print("No se encontró un paciente con ese código.")
+        return
+
+    indice = lista_codigos.index(codigo)
+
+    print(f"\nPaciente actual:")
+    print("1. Nombre:", lista_nombres[indice])
+    print("2. Especie:", lista_especies[indice])
+    print("3. Raza:", lista_razas[indice])
+    print("4. Edad:", lista_edades[indice])
+    print("5. Sexo:", lista_sexos[indice])
+    print("6. Última cita:", lista_ultimas_citas[indice])
+    print("7. Próxima cita:", lista_proximas_citas[indice])
+    print("8. Vacunas:", lista_vacunas[indice])
+    print("9. Enfermedades:", lista_enfermedades[indice])
+    
+    try:
+        opcion = int(input("¿Qué campo querés modificar? (1-9): "))
+    except ValueError:
+        print("Opción inválida.")
+        return
+
+    if opcion == 1:
+        lista_nombres[indice] = input("Nuevo nombre: ")
+    elif opcion == 2:
+        lista_especies[indice] = input("Nueva especie: ")
+    elif opcion == 3:
+        lista_razas[indice] = input("Nueva raza: ")
+    elif opcion == 4:
+        while True:
+            try:
+                nueva_edad = int(input("Nueva edad: "))
+                if 0 <= nueva_edad <= 100:
+                    lista_edades[indice] = nueva_edad
+                    break
+                else:
+                    print("Edad fuera de rango.")
+            except ValueError:
+                print("Ingresá un número válido.")
+    elif opcion == 5:
+        sexo = input("Nuevo sexo (M/H): ").lower()
+        while sexo not in ['m', 'h']:
+            print("Sexo inválido.")
+            sexo = input("Nuevo sexo (M/H): ").lower()
+        lista_sexos[indice] = sexo
+    elif opcion == 6:
+        while True:
+            nueva_fecha = input("Nueva fecha de última cita (dd/mm/aaaa): ")
+            try:
+                fecha = datetime.strptime(nueva_fecha, "%d/%m/%Y")
+                if fecha <= datetime.now():
+                    lista_ultimas_citas[indice] = nueva_fecha
+                    break
+                else:
+                    print("No puede ser una fecha futura.")
+            except ValueError:
+                print("Formato inválido.")
+    elif opcion == 7:
+        while True:
+            nueva_fecha = input("Nueva fecha de próxima cita (dd/mm/aaaa): ")
+            try:
+                fecha = datetime.strptime(nueva_fecha, "%d/%m/%Y")
+                ultima = datetime.strptime(lista_ultimas_citas[indice], "%d/%m/%Y")
+                if fecha >= datetime.now() and fecha >= ultima:
+                    lista_proximas_citas[indice] = nueva_fecha
+                    break
+                else:
+                    print("Debe ser una fecha futura y posterior a la última cita.")
+            except ValueError:
+                print("Formato inválido.")
+    elif opcion == 8:
+        lista_vacunas[indice] = input("Nuevas vacunas: ")
+    elif opcion == 9:
+        lista_enfermedades[indice] = input("Nuevas enfermedades: ")
+    else:
+        print("Opción fuera de rango.")
+        return
+
+    print("¡Paciente actualizado con éxito!")
 
 def buscar_animal():
     codigo = input("Buscar por código: ").lower()
