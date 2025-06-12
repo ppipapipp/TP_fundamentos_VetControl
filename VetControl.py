@@ -35,7 +35,7 @@ def buscar_duplicados(ingreso, listas):
                 coincidencias.append(item)
     return coincidencias
 
-
+""" Verificar que el usuario no ingrese una respuesta en blanco, ni numeros en respuestas donde no se deba"""
 def pedir_texto(mensaje):
     while True:
         texto = input(mensaje).strip()
@@ -46,7 +46,7 @@ def pedir_texto(mensaje):
         else:
             return texto
 
-"""  Agregado de nuevo paciente"""
+"""  Agregado de nuevo paciente  """
 def agregar_animal():
     while True:
         codigo = str(random.randint(1000, 9999))
@@ -242,8 +242,11 @@ def buscar_animal():
     if not encontrado:
         print("No se encontró ningún paciente con ese nombre o código.")
 
+""" promedio de edades y sexos """
+
 suma_edades=0
 cantidad_animales=0
+
 def promedio_edad(lista_edades):
     suma_edades = sum(lista_edades)
 
@@ -259,7 +262,6 @@ total=0
 porcentaje_h=0
 porcentaje_m=0
 
-""" promedio de edades y sexos """
 def porcentaje_sexo(lista_sexos):
     hembras = lista_sexos.count("h")
     machos = lista_sexos.count("m")
@@ -276,7 +278,7 @@ def porcentaje_sexo(lista_sexos):
     print("Porcentaje de machos:", round(porcentaje_m, 2), "%")
 
 
-
+""" Funcion para ordenar las listas por orden alfabetico de los nombres """
 def ordenar_por_nombre():
     #ORDENAMIENTO POR BURBUJA
     n = len(lista_nombres)
@@ -297,9 +299,6 @@ def ordenar_por_nombre():
 
     print("\nLista ordenada alfabéticamente por nombre:\n")
     mostrar_lista()
-
-
-
 
 
 def menu():
