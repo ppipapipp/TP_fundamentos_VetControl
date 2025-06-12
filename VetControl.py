@@ -35,6 +35,17 @@ def buscar_duplicados(ingreso, listas):
                 coincidencias.append(item)
     return coincidencias
 
+
+def pedir_texto(mensaje):
+    while True:
+        texto = input(mensaje).strip()
+        if texto == "":
+            print("Este campo no puede quedar vacío. Por favor, ingresá un valor.")
+        elif any(caracter.isdigit() for caracter in texto):
+            print("El texto no puede contener números.")
+        else:
+            return texto
+
 """  Agregado de nuevo paciente"""
 def agregar_animal():
     while True:
@@ -48,22 +59,28 @@ def agregar_animal():
     
     print("El codigo del paciente es:", codigo)
 
-    nombre = input("Ingresá el nombre del nuevo paciente: ")
+    nombre = pedir_texto("Ingresá el nombre del nuevo paciente: ")
     lista_nombres.append(nombre)
 
-    especie = str(input("Ingresá la especie del paciente (ej: perro, gato): "))
+    especie = pedir_texto("Ingresá la especie del paciente (ej: perro, gato): ")
     lista_especies.append(especie)
 
-    raza = str(input("Ingresá la raza del paciente: "))
+    raza = pedir_texto("Ingresá la raza del paciente: ")
     lista_razas.append(raza)
-
-    edad = int(input("Ingresá la edad del paciente: "))
-    lista_edades.append(edad)
-    """ Verificación"""
-    while edad < 0 or edad>100:
-        print("Ingrese una edad correcta")
-        edad=int(input("Ingresá la edad del paciente: "))
-    lista_edades.append(edad)
+    while True:
+        entrada = input("Ingresá la edad del paciente: ")
+        if entrada == "":
+            print("No se puede dejar vacío. Por favor, ingresá una edad.")
+            continue
+        try:
+            edad= int(entrada)
+            if edad < 0 or edad > 100:
+                print("Ingrese una edad correcta (entre 0 y 100).")
+            else:
+                lista_edades.append(edad)
+                break  
+        except ValueError:
+            print("Por favor, ingresá un número válido.")
 
     sexo = input("Ingresá el sexo del paciente (M/H): ")
     lista_sexos.append(sexo.lower())
