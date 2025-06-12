@@ -312,6 +312,8 @@ def menu():
         print("4. Promedio de edad")
         print("5. Porcentaje sexos")
         print("6. Ordenar alfabéticamente por nombre")
+        print("7. modificar paciente")
+        print("8. Ayuda")
         print("-1. Salir")
 
         try:
@@ -332,6 +334,16 @@ def menu():
             porcentaje_sexo(lista_sexos)
         elif opcion == 6:
             ordenar_por_nombre()
+        elif opcion == 7:
+            modificar_animal()
+        elif opcion == 8:
+            print("""VetControl - Gestión de Pacientes Veterinarios
+                  Su aplicacion para el control de pacientes veterinarios.
+                  Para buscar un paciente, ingresá su código en la opcion 3
+                  Para agregar un paciente, ingresá sus datos en la opcion 2
+                  Para modificar un paciente, ingresá su código en la opcion 7
+                  Y si es curioso, ingresá la opcion 6 para ordenar alfabéticamente por nombre a todos los pacientes.""")
+            
         elif opcion == -1:
             print("¡Chau!")
         else:
