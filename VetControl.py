@@ -233,17 +233,48 @@ machos=0
 total=0
 porcentaje_h=0
 porcentaje_m=0
+
+
 def porcentaje_sexo(lista_sexos):
-    for i in range(len(lista_sexos)):
-        if lista_sexos == ("h") :
-            hembras +=1
-        else:
-            machos +=1
-    total= machos+hembras
-    porcentaje_h= (hembras*100)/total
-    print("el porcentaje de hembras es", porcentaje_h, "%")
-    porcentaje_m= (machos*100)/total
-    print("el porcentaje de machos es", porcentaje_m, "%")
+    hembras = lista_sexos.count("h")
+    machos = lista_sexos.count("m")
+    total = hembras + machos
+
+    if total == 0:
+        print("No hay datos para calcular porcentajes.")
+        return
+
+    porcentaje_h = (hembras * 100) / total
+    porcentaje_m = (machos * 100) / total
+
+    print("Porcentaje de hembras:", round(porcentaje_h, 2), "%")
+    print("Porcentaje de machos:", round(porcentaje_m, 2), "%")
+
+
+
+def ordenar_por_nombre():
+    #ORDENAMIENTO POR BURBUJA
+    n = len(lista_nombres)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if lista_nombres[j].lower() > lista_nombres[j + 1].lower():
+                # Intercambiar en todas las listas paralelas
+                lista_nombres[j], lista_nombres[j + 1] = lista_nombres[j + 1], lista_nombres[j]
+                lista_codigos[j], lista_codigos[j + 1] = lista_codigos[j + 1], lista_codigos[j]
+                lista_especies[j], lista_especies[j + 1] = lista_especies[j + 1], lista_especies[j]
+                lista_razas[j], lista_razas[j + 1] = lista_razas[j + 1], lista_razas[j]
+                lista_edades[j], lista_edades[j + 1] = lista_edades[j + 1], lista_edades[j]
+                lista_sexos[j], lista_sexos[j + 1] = lista_sexos[j + 1], lista_sexos[j]
+                lista_proximas_citas[j], lista_proximas_citas[j + 1] = lista_proximas_citas[j + 1], lista_proximas_citas[j]
+                lista_ultimas_citas[j], lista_ultimas_citas[j + 1] = lista_ultimas_citas[j + 1], lista_ultimas_citas[j]
+                lista_vacunas[j], lista_vacunas[j + 1] = lista_vacunas[j + 1], lista_vacunas[j]
+                lista_enfermedades[j], lista_enfermedades[j + 1] = lista_enfermedades[j + 1], lista_enfermedades[j]
+
+    print("\nLista ordenada alfabéticamente por nombre:\n")
+    mostrar_lista()
+
+
+
 
 
 def menu():
@@ -255,6 +286,7 @@ def menu():
         print("3. Buscar paciente")
         print("4. Promedio de edad")
         print("5. Porcentaje sexos")
+        print("6. Ordenar alfabéticamente por nombre")
         print("-1. Salir")
 
         try:
@@ -273,6 +305,8 @@ def menu():
             promedio_edad(lista_edades)
         elif opcion == 5:
             porcentaje_sexo(lista_sexos)
+        elif opcion == 6:
+            ordenar_por_nombre()
         elif opcion == -1:
             print("¡Chau!")
         else:
