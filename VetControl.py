@@ -15,6 +15,7 @@ lista_historial_citas = []
 from datetime import datetime
 import random 
 
+""" imprime la lista actual"""
 def mostrar_lista():
     print("\nLista actual:")
     if len(lista_codigos) == 0:
@@ -24,6 +25,7 @@ def mostrar_lista():
             print(i+1, " Código: ", lista_codigos[i] , " | Nombre: " , lista_nombres[i])
     print()
 
+"""    verifica que no haya duplicidad en los códigos de los animales    """
 def buscar_duplicados(ingreso, listas):
     ingreso = ingreso.strip().lower()
     coincidencias = []
@@ -33,6 +35,7 @@ def buscar_duplicados(ingreso, listas):
                 coincidencias.append(item)
     return coincidencias
 
+"""  Agregado de nuevo paciente"""
 def agregar_animal():
     while True:
         codigo = str(random.randint(1000, 9999))
@@ -56,6 +59,7 @@ def agregar_animal():
 
     edad = int(input("Ingresá la edad del paciente: "))
     lista_edades.append(edad)
+    """ Verificación"""
     while edad < 0 or edad>100:
         print("Ingrese una edad correcta")
         edad=int(input("Ingresá la edad del paciente: "))
@@ -63,6 +67,7 @@ def agregar_animal():
 
     sexo = input("Ingresá el sexo del paciente (M/H): ")
     lista_sexos.append(sexo.lower())
+    """ Verificación"""
     while sexo != "m" and sexo != "h":
         print("Ingrese un sexo correcto")
         sexo = input("Ingresá el sexo del paciente (M/H): ")
@@ -73,6 +78,7 @@ def agregar_animal():
         try:
             fecha_ultima= datetime.strptime(ultima_cita, "%d/%m/%Y")
             hoy=datetime.now()
+            """ Verificación"""
             if fecha_ultima > hoy:
                 print("La fecha de la ultima cita no puede estar en el futuro, intente de nuevo.")
                 ultima_cita = input("Ingresá la fecha de la última cita (dd/mm/aaaa): ")
@@ -89,7 +95,7 @@ def agregar_animal():
         try:
             fecha_proxima = datetime.strptime(proxima_cita, "%d/%m/%Y")
             hoy = datetime.now()
-
+            """ Verificación"""
             if fecha_proxima < hoy:
                 print("La fecha de la próxima cita no puede estar en el pasado. Intente de nuevo.")
                 continue
@@ -111,6 +117,7 @@ def agregar_animal():
 
     print(nombre, " fue agregado/a exitosamente a la base de datos.\n")
 
+""" modifica información de un paciente pre existente"""
 def modificar_animal():
     codigo = input("Ingresá el código del paciente a modificar: ").strip()
     if codigo not in lista_codigos:
@@ -194,6 +201,7 @@ def modificar_animal():
 
     print("¡Paciente actualizado con éxito!")
 
+""" búsqueda de paciente ya presente en la lista """
 def buscar_animal():
     codigo = input("Buscar por código: ").lower()
 
@@ -234,7 +242,7 @@ total=0
 porcentaje_h=0
 porcentaje_m=0
 
-
+""" promedio de edades y sexos """
 def porcentaje_sexo(lista_sexos):
     hembras = lista_sexos.count("h")
     machos = lista_sexos.count("m")
